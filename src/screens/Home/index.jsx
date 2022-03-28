@@ -1,5 +1,6 @@
 import React from "react";
 import HeroBanner from '../../components/HeroBanner'
+import VideoCard from "../../components/VideoCard";
 const Home = () => {
   return (
     <div className="app-container">
@@ -9,6 +10,7 @@ const Home = () => {
         className="slider-image responsive-image image-container"
       /> */}
       <HeroBanner />
+      <VideoCard />
     </div>
   );
 };

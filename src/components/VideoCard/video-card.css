@@ -1,0 +1,82 @@
+.responsive-img{
+  height: 220px;
+}
+
+.vertical-card{
+  max-width: 400px;
+}
+
+.product-rating{
+  position: absolute;
+  top: 17rem;
+  right: 3rem;
+  background-color: var(--light-primary-color);
+    padding: 5px;
+    border-radius: 7px;
+    font-size: 16px;
+    opacity: 0.9;
+}
+
+.favorite-btn{
+  position: absolute;
+  top: 15px;
+  right: 3rem;
+  cursor: pointer;
+  border-radius: 50%;
+  color: black;
+}
+
+.card-text-container{
+  text-align: justify;
+}
+
+
+/* video card drop down */
+.video-card-dropdown-button {
+  cursor: pointer;
+  border: none;
+  height: max-content;
+  margin-left: auto;
+  align-items: flex-start;
+  display: flex;
+}
+
+.icon-button {
+  border-radius: 50%;
+  transition: filter 300ms;
+  margin-right: 2rem;
+}
+
+.icon-button:hover {
+  filter: brightness(1.2);
+}
+
+.dropdown {
+  position: absolute;
+  bottom: 28px;
+  width: 240px;
+  overflow: hidden;
+  background-color: white;
+  padding: 8px 0;
+}
+
+.menu-item {
+  height: 50px;
+  display: flex;
+  align-items: center;
+  /* border-radius: 8px; */
+  border: none;
+  transition: background 30;
+  padding: 0.5rem;
+  width: 100%;
+  cursor: pointer;
+  background-color: white;
+}
+
+.menu-item:hover {
+  background-color: var(--secondary-light-color);
+}
+
+.icon-right {
+  margin-left: auto;
+}
