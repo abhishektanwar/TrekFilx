@@ -3,8 +3,14 @@ body{
 }
 
 .app-container{
-  margin-left: 5rem;
-  margin-right: 5rem;
+  width:90vw;
+}
+
+.main-container{
+  display: grid;
+  grid-template-columns: 10vw 90vw;
+  overflow-x: hidden;
+  
 }
 
 @media screen and (max-width:480px){
@@ -12,3 +18,4 @@ body{
     margin :0;
   }
 }
+

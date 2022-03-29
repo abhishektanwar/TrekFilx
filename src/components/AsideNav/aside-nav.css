@@ -1,0 +1,24 @@
+.aside-nav-container{
+  /* background-color: yellow; */
+  width:10vw;
+  border:1px solid green;
+  background-color: var(--grey-background-color);
+}
+
+ul{
+  list-style-type: none;
+  padding: 0;
+}
+
+.aside-nav-item{
+  align-items: center;
+  display: flex;
+  text-decoration: none;
+  justify-content: center;
+  padding: 1.5rem;
+  border: 1px solid black;
+}
+
+.aside-nav-item:hover{
+  background-color: var(--secondary-color);
+}

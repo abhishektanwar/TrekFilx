@@ -17,7 +17,7 @@ const VideoCard = () => {
 
       <div class="card-text-container flex-column margin-top-20">
         <div class="flex-row">
-          <span style={{width:'80%'}}>
+          <span style={{width:'80%',whiteSpace:'break-spaces'}}>
           <h6 class="text-bold-weight body-typo-md wrap-word">{"Title of video Title of video Title of video Title of video Title of video Title of videoTitle of video Title of video"}</h6>
 
           </span>
