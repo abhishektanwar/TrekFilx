@@ -58,6 +58,7 @@
   overflow: hidden;
   background-color: white;
   padding: 8px 0;
+  z-index: 10;
 }
 
 .menu-item {
