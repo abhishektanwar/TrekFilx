@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { useAuth } from "../../Contexts/AuthDialogContext";
 import { useModal } from "../../Contexts/ModalContext";
-import Button from "../Header/Button";
+import Button from "../Buttons/Button";
 import InputField from "../InputField";
 import "./authentication.css";
 const Login = () => {
@@ -72,7 +72,7 @@ const Login = () => {
               {error.errorMessage}
             </p>
           )}
-          <Button buttonText="Login" onClick={() => loginUser()} />
+          <Button buttonText="Login" buttonStyle="flex-justify-content-center" onClick={() => loginUser()} />
           <Button
             buttonText="Create new account"
             buttonStyle="secondary-button margin-top-0"
