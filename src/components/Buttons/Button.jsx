@@ -6,9 +6,9 @@ const Button = (props) => {
     <button
       type={type}
       onClick={onClick}
-      class={`margin-trb-16 btn btn-filled-primary ${buttonStyle}`}
+      class={`margin-trb-16 btn btn-filled-primary flex-row flex-align-item-center ${buttonStyle}`}
     >
-      {icon ? <i className={icon}></i> : null}
+      {icon ? icon : null}
       {" "}
       {buttonText}
     </button>

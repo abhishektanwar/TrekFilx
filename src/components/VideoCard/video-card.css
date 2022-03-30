@@ -6,7 +6,7 @@
   max-width: 400px;
 }
 
-.product-rating{
+.time-duration{
   position: absolute;
   top: 17rem;
   right: 3rem;
@@ -79,4 +79,19 @@
 
 .icon-right {
   margin-left: auto;
+}
+
+.horizontal-card .image-container{
+  width: 25rem;
+}
+
+.horizontal-card{
+  width: 80rem;
+  position: relative;
+}
+
+.horizontal-card .time-duration{
+  top: 11rem;
+  left: 12rem;
+  right: unset;
 }

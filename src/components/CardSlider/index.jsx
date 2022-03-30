@@ -34,7 +34,7 @@ const CardSlider = (props) => {
         {[1,2,3,4,5,6,7,8,9,10,11].map((item)=>{
           return (
             <div className="slider-card">
-            <VideoCard /></div>
+            <VideoCard variant="vertical" /></div>
           )
         })}
       </div>
