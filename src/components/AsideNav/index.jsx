@@ -22,11 +22,6 @@ const AsideNav = () => {
 
   return (
     <div className="aside-nav-container">
-      {/* <ul> */}
-        {/* <Link style={{textDecoration:'none'}} onClick={()=>user ? navigate('/explore') : navigate('/afasfsf')}>
-          
-          <li className="aside-nav-item body-typo-md text-medium-weight"> <Explore /><span style={{marginLeft:'1rem'}}> Explore</span></li>
-        </Link> */}
         <Button
           buttonText="Explore"
           buttonStyle="aside-nav-item body-typo-md text-medium-weight secondary-button"
@@ -74,7 +69,6 @@ const AsideNav = () => {
           }}
         />
         
-      {/* </ul> */}
     </div>
   );
 };
