@@ -1,7 +1,7 @@
 .authentication-container{
 	background-color: var(--bg-color-primary);
 	height:fit-content;
-	width: 50em;
+	width: 50rem;
 	align-items: center;
 	padding: 3rem 7rem;
 }
@@ -27,9 +27,9 @@
 
 .checkbox-container .checkmark:after{
 	left: 5px;
-    bottom: 4px;
-    width: 3px;
-    height: 7px;
+	bottom: 4px;
+	width: 3px;
+	height: 7px;
 }
 
 .forgot-your-pass{
@@ -54,7 +54,7 @@
 }
 
 .auth-body{
-	height: calc(100vh - 10vh);
+	height: 90vh;
 	display: flex;
 	align-items: center;
 	justify-content: center;
