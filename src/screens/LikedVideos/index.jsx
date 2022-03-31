@@ -3,7 +3,10 @@ import VideoListingGrid from '../../components/VideoListingGrid'
 
 const LikedVideos = () => {
   return (
-    <VideoListingGrid />
+    <h1>
+      Videos liked by you
+    </h1>
+    // <VideoListingGrid />
   )
 }
 

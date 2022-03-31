@@ -21,3 +21,7 @@
 li{
   color: var(--body-text-color);
 }
+
+.active-nav{
+  background-color:var(--bg-color-secondary) ;
+}

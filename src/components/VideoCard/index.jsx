@@ -3,7 +3,19 @@ import "./video-card.css";
 import VideoCardDropDownMenu from "./VideoCardDropDownMenu";
 
 const VideoCard = (props) => {
-  const { variant } = props;
+  const { variant, video } = props;
+  const {
+    title,
+    channelName,
+    videoLength,
+    likes,
+    views,
+    subscribers,
+    videoThumbnail,
+    channelThumbnail,
+    channelLink,
+    description,
+  } = video;
   const imageUrl =
     "https://yt3.ggpht.com/ytc/AKedOLT73975I62n_lVOvDq0y0rmsJru0etCDFATN0F0=s68-c-k-c0x00ffffff-no-rj";
   if (variant === "vertical") {
@@ -11,7 +23,7 @@ const VideoCard = (props) => {
       <div class="vertical-card flex-column margin-trb-20">
         <div class="image-container badge-container">
           <img
-            src={imageUrl}
+            src={videoThumbnail}
             loading="lazy"
             alt={"imgAlt"}
             class="responsive-img image-container"
@@ -23,29 +35,28 @@ const VideoCard = (props) => {
             <span style={{ width: "80%", whiteSpace: "break-spaces" }}>
               <h6 class="text-bold-weight body-typo-md wrap-word">
                 {
-                  "Title of video Title of video Title of video Title of video Title of video Title of videoTitle of video Title of video"
+                  title
                 }
               </h6>
             </span>
             <VideoCardDropDownMenu />
-            <span className="time-duration">time duration </span>
+            <span className="time-duration">{videoLength} </span>
           </div>
           <p
             className="text-medium-weight body-typo-md wrap-word margin-top-60"
             style={{ display: "inline-block", marginTop: "1rem" }}
           >
-            {"Channel Name"}
+            {channelName}
           </p>
           <div class="text-container-description">
             <p class="body-typo-md text-light-weight">
-              {`24K views `}|{` 2 days ago `}
+              {`${views} ${" "}`}|{`${" "}${likes} likes` }
             </p>
           </div>
         </div>
       </div>
     );
-  }
-  else{
+  } else {
     return (
       <div class="horizontal-card margin-trb-20">
         <div class="image-container badge-container">

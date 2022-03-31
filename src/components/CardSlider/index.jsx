@@ -5,7 +5,7 @@ import BadgeIconButton from '../Buttons/BadgeIconButton'
 import './card-slider.css'
 
 const CardSlider = (props) => {
-  const {heading} = props;
+  const {heading,videos} = props;
   // const featuredVideos = videos.filter(video=>video.featured)
   const ref=useRef(null);
   console.log("ref",ref);
@@ -31,13 +31,14 @@ const CardSlider = (props) => {
         onClick={slideRight}
       />
       <div className="card-slider" ref={ref} >
-        {[1,2,3,4,5,6,7,8,9,10,11].map((item)=>{
+        {videos.map((video)=>{
           return (
             <div className="slider-card">
-            <VideoCard variant="vertical" /></div>
+            <VideoCard variant="vertical" video={video} key={video.id} /></div>
           )
         })}
       </div>
+      <div className="margin-top-60"></div>
     </section>
   )
 }

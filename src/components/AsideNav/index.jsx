@@ -10,11 +10,15 @@ import { useAuth } from "../../Contexts/AuthDialogContext";
 import { useNavigate } from "react-router-dom";
 import Button from "../Buttons/Button";
 import { useModal } from "../../Contexts/ModalContext";
+import {useLocation} from 'react-router-dom';
+
 const AsideNav = () => {
   const { setAuthType, logoutHandler, user } = useAuth();
   const navigate = useNavigate();
   const { showModal } = useModal();
-
+  const location = useLocation();
+  const currentLocation = location.pathname;
+  console.log("loca",location)
   const handleLogin = () => {
     showModal();
     setAuthType("login");
@@ -24,7 +28,7 @@ const AsideNav = () => {
     <div className="aside-nav-container">
         <Button
           buttonText="Explore"
-          buttonStyle="aside-nav-item body-typo-md text-medium-weight secondary-button"
+          buttonStyle={`aside-nav-item body-typo-md text-medium-weight secondary-button ${currentLocation==='/explore' ? 'active-nav' : ''}`}
           icon={
             <span style={{ marginRight: "1rem" }}>
               <Explore />
@@ -34,7 +38,7 @@ const AsideNav = () => {
         />
         <Button
           buttonText="Liked Videos"
-          buttonStyle="aside-nav-item body-typo-md text-medium-weight secondary-button"
+          buttonStyle={`aside-nav-item body-typo-md text-medium-weight secondary-button ${currentLocation==='/liked-videos' ? 'active-nav' : ''}`}
           icon={
             <span style={{ marginRight: "1rem" }}>
               <Like />
@@ -46,7 +50,7 @@ const AsideNav = () => {
         />
         <Button
           buttonText="Playlists"
-          buttonStyle="aside-nav-item body-typo-md text-medium-weight secondary-button"
+          buttonStyle={`aside-nav-item body-typo-md text-medium-weight secondary-button ${currentLocation==='/playlists' ? 'active-nav' : ''}`}
           icon={
             <span style={{ marginRight: "1rem" }}>
               <PlaylistAddCheck />
@@ -58,7 +62,7 @@ const AsideNav = () => {
         />
         <Button
           buttonText="History"
-          buttonStyle="aside-nav-item body-typo-md text-medium-weight secondary-button"
+          buttonStyle={`aside-nav-item body-typo-md text-medium-weight secondary-button ${currentLocation==='/history' ? 'active-nav' : ''}`}
           icon={
             <span style={{ marginRight: "1rem" }}>
               <History />
