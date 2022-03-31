@@ -1,13 +1,7 @@
 .aside-nav-container{
-  /* background-color: yellow; */
   width:10vw;
   border:1px solid green;
   background-color: var(--grey-background-color);
-}
-
-ul{
-  list-style-type: none;
-  padding: 0;
 }
 
 .aside-nav-item{
@@ -15,7 +9,9 @@ ul{
   display: flex;
   text-decoration: none;
   padding: 1.5rem;
-  border: 1px solid black;
+  border-radius: 0px;
+  width: 100%;
+  margin: 0;
 }
 
 .aside-nav-item:hover{

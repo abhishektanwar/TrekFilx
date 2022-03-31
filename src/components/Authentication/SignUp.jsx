@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { useAuth } from "../../Contexts/AuthDialogContext";
 import { useModal } from "../../Contexts/ModalContext";
-import Button from "../Header/Button";
+import Button from "../Buttons/Button";
 import InputField from "../InputField";
 import "./authentication.css";
 const SignUp = () => {
@@ -88,7 +88,7 @@ const SignUp = () => {
             validation={signUpCredentials.confirmPassword.length === 0 ? true : isValidPassword}
           />
           <div class="card-action-btn-container flex-column">
-            <Button buttonText="Sign Up" buttonStyle={!(isValidPassword && isValidEmail) ? 'btn-disabled' : '' } onClick={() => signUpUser()} />
+            <Button buttonText="Sign Up" buttonStyle={`flex-justify-content-center ${!(isValidPassword && isValidEmail) ? `btn-disabled ` : `` }`} onClick={() => signUpUser()} />
             <Button
               buttonText="Already have an account ?"
               buttonStyle="secondary-button"
