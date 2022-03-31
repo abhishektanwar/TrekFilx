@@ -12,27 +12,29 @@ import History from "./screens/History";
 import Playlists from "./screens/Playlists";
 import { ModalProvider } from "./Contexts/ModalContext";
 import { AuthProvider } from "./Contexts/AuthDialogContext";
+import { VideoListingProvider } from "./Contexts/VideoListingContext";
 function App() {
   return (
     <div className="App">
       <Router>
-        
         <ModalProvider>
           <AuthProvider>
-            <nav className="nav-bar shadow-box" id="my-nav-bar">
-              <Header />
-            </nav>
-            <div className="main-container">
-              <AsideNav />
-              <Routes>
-                <Route path="/" element={<Home />} />
-                <Route path="/explore" element={<ExploreVideos />} />
-                <Route path="/liked-videos" element={<LikedVideos />} />
-                <Route path="/history" element={<History />} />
-                <Route path="/playlists" element={<Playlists />} />
-                <Route path="/video" element={<VideoPage />} />
-              </Routes>
-            </div>
+            <VideoListingProvider>
+              <nav className="nav-bar shadow-box" id="my-nav-bar">
+                <Header />
+              </nav>
+              <div className="main-container">
+                <AsideNav />
+                <Routes>
+                  <Route path="/" element={<Home />} />
+                  <Route path="/explore" element={<ExploreVideos />} />
+                  <Route path="/liked-videos" element={<LikedVideos />} />
+                  <Route path="/history" element={<History />} />
+                  <Route path="/playlists" element={<Playlists />} />
+                  <Route path="/video" element={<VideoPage />} />
+                </Routes>
+              </div>
+            </VideoListingProvider>
           </AuthProvider>
         </ModalProvider>
       </Router>

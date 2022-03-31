@@ -8,20 +8,30 @@ import { v4 as uuid } from "uuid";
 export const categories = [
   {
     _id: uuid(),
-    categoryName: "Computer Programming",
+    title: "Trekking",
     description:
       "Computer programming is the process of designing and building an executable computer program to accomplish a specific computing",
+      category:"trekking",
   },
   {
     _id: uuid(),
-    categoryName: "Frontend Development",
+    title: "Skiing",
     description:
       "Front-end web development, also known as client-side development is the practice of producing HTML, CSS and JavaScript for a website or Web Application",
+    category:'skiing',
   },
   {
     _id: uuid(),
-    categoryName: "Backend Development",
+    categoryName: "Rock Climbing",
     description:
       "Backend Development is also known as server-side development. It is everything that the users don't see and contains behind-the-scenes activities that occur when performing any action on a website.",
+    category:'rockclimbing'
+  },
+  {
+    _id: uuid(),
+    categoryName: "Snorkelling",
+    description:
+      "Backend Development is also known as server-side development. It is everything that the users don't see and contains behind-the-scenes activities that occur when performing any action on a website.",
+    category:'snorkeling'
   },
 ];

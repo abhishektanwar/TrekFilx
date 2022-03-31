@@ -3,8 +3,11 @@ import CardSlider from "../../components/CardSlider";
 import HeroBanner from '../../components/HeroBanner'
 import VideoCard from "../../components/VideoCard";
 import {v4 as uuid} from 'uuid'
+import { useVideoListing } from "../../Contexts/VideoListingContext";
 
 const Home = () => {
+  const {videoListingState} = useVideoListing();
+  console.log("videoListingState",videoListingState)
   return (
     <div className="app-container">
       <HeroBanner />
