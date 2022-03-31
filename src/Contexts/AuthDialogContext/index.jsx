@@ -12,8 +12,6 @@ export const AuthContext = createContext({
 });
 
 export const AuthProvider = (props) => {
-  // const [showModal,setShowModal] = useState(false)
-  // const {authType,setAuthType} = useAuthDialog();
   const [authType, setAuthType] = useState(null);
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState({ errorExists: false, errorMessage: "" });
@@ -32,7 +30,6 @@ export const AuthProvider = (props) => {
         setIsLoading(false);
         setError({errorExists:false,errorMessage:''})
         setUser(res.data.foundUser)
-        console.log("res.data.foundUser",res.data.foundUser)
         return true;
       }
     } catch (e) {
@@ -44,7 +41,6 @@ export const AuthProvider = (props) => {
   const logoutHandler = () => {
     utils.removeLocalStorage('authToken')
 		setUser(null);
-    console.log("logged out")
   };
   
   const signUpHandler = async (user) => {
@@ -54,7 +50,6 @@ export const AuthProvider = (props) => {
         email: user.email,
         password: user.password,
       })
-      console.log("signup respinse",res);
       if(res.statusText==='Created'){
         setUser(res.data.createdUser)
         utils.setLocalStorage('authToken',res.data.encodedToken);
