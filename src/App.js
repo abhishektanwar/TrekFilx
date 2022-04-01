@@ -13,6 +13,7 @@ import Playlists from "./screens/Playlists";
 import { ModalProvider } from "./Contexts/ModalContext";
 import { AuthProvider } from "./Contexts/AuthDialogContext";
 import { VideoListingProvider } from "./Contexts/VideoListingContext";
+import VideoPlayer from "./components/VideoPlayer";
 function App() {
   return (
     <div className="App">
@@ -32,6 +33,8 @@ function App() {
                   <Route path="/history" element={<History />} />
                   <Route path="/playlists" element={<Playlists />} />
                   <Route path="/video" element={<VideoPage />} />
+                  <Route path="/video/:id" element={<VideoPlayer />} />
+
                 </Routes>
               </div>
             </VideoListingProvider>

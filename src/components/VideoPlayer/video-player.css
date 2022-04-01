@@ -1,0 +1,47 @@
+.yt-video-player{
+  height: 50rem;
+}
+
+.responsive-img{
+  height:unset
+}
+
+.yt-video-title-container{
+  margin-left: 4rem;
+  margin-right: 4rem;
+  border-bottom: 2px solid var(--border-color);
+}
+
+.yt-video-action-btn{
+  margin:0
+}
+
+.yt-video-description-container{
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+
+.yt-video-views{
+  align-self: center;
+}
+
+.yt-video-action-button-container{
+  margin-left: auto;
+}
+
+@media screen and (max-width:1024px){
+  .yt-video-description-container{
+    flex-direction: column;
+    justify-content: center;
+  }
+
+  .yt-video-action-button-container{
+    margin-left: unset;
+  }
+
+  .yt-video-views{
+    margin-top: 1.6rem;
+    align-self: flex-start;
+  }
+}

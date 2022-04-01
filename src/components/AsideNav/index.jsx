@@ -72,7 +72,6 @@ const AsideNav = () => {
             user ? navigate("/history") : handleLogin();
           }}
         />
-        
     </div>
   );
 };
