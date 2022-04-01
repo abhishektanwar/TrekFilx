@@ -1,18 +1,16 @@
 import React from "react";
-import { ReactComponent as Explore } from "../../assets/explore.svg";
-import { ReactComponent as History } from "../../assets/history.svg";
 import { ReactComponent as PlaylistAdd } from "../../assets/playlist-add.svg";
 import { ReactComponent as Like } from "../../assets/like.svg";
 import { ReactComponent as WatchLater } from "../../assets/watch-later.svg";
-
-import "./video-player.css";
 import Button from "../Buttons/Button";
-const VideoPlayer = () => {
+import "./video-player.css";
+
+const VideoPlayer = ({video}) => {
   return (
     <div>
       <iframe
         width="100%"
-        src={``}
+        src={`https://www.youtube.com/embed/${video.youtubeID}`}
         title="Video Player"
         frameBorder={0}
         allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
@@ -22,12 +20,12 @@ const VideoPlayer = () => {
       ></iframe>
       <div>
         <div className="yt-video-title-container">
-          <h3>Title here</h3>
+          <h3>{video.title}</h3>
           <div className="yt-video-description-container" style={{marginTop:'-20px'}}>
-            <p class="body-typo-md text-light-weight yt-video-views">{`${"views"} ${" "}`}</p>
+            <p class="body-typo-md text-light-weight yt-video-views">{`${video.views} views ${" "}`}</p>
             <div className="flex-row yt-video-action-button-container" >
             <Button
-              buttonText="45K"
+              buttonText={video.likes}
               buttonStyle={`body-typo-md text-medium-weight secondary-button yt-video-action-btn`}
               icon={
                 <span style={{ marginRight: "1rem" }}>
@@ -67,7 +65,7 @@ const VideoPlayer = () => {
           style={{ marginLeft: "4rem" }}
         >
           <img
-            src="https://yt3.ggpht.com/q6UXzenrtqGQQ9BO4q4Od-0R0WueoHPsykBmjIMzh_0-E3CzHRLKXBoeyP56_mJgxxQGN5JhOls=s88-c-k-c0x00ffffff-no-rj"
+            src={video.channelThumbnail}
             alt="avatar"
             loading="lazy"
             className="responsive-img circular-img"
@@ -75,8 +73,8 @@ const VideoPlayer = () => {
         </div>
 
         <div className="flex-column">
-          <p className="body-typo-md">Channel Name</p>
-          <p className="body-typo-sm">245K Subscribers</p>
+          <p className="body-typo-md">{video.channelName}</p>
+          <p className="body-typo-sm">{`${video.subscribers} Subscribers`}</p>
         </div>
       </div>
     </div>

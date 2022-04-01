@@ -1,11 +1,12 @@
 import React from "react";
 import "./video-card.css";
 import VideoCardDropDownMenu from "./VideoCardDropDownMenu";
-
+import {useNavigate} from 'react-router-dom';
 const VideoCard = (props) => {
   const { variant, video } = props;
   const {
     title,
+    youtubeID,
     channelName,
     videoLength,
     likes,
@@ -16,11 +17,12 @@ const VideoCard = (props) => {
     channelLink,
     description,
   } = video;
+  const navigate = useNavigate();
   const imageUrl =
     "https://yt3.ggpht.com/ytc/AKedOLT73975I62n_lVOvDq0y0rmsJru0etCDFATN0F0=s68-c-k-c0x00ffffff-no-rj";
   if (variant === "vertical") {
     return (
-      <div class="vertical-card flex-column margin-trb-20">
+      <div class="vertical-card flex-column margin-trb-20" onClick={()=>navigate(`/video/${youtubeID}`)}>
         <div class="image-container badge-container">
           <img
             src={videoThumbnail}

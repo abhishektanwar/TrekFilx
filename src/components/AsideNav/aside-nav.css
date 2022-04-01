@@ -1,6 +1,5 @@
 .aside-nav-container{
   width:10vw;
-  border:1px solid green;
   background-color: var(--grey-background-color);
   height: calc(100vh - 80px);
 }
