@@ -1,6 +1,7 @@
-import { createContext, useContext, useState } from "react";
+import { createContext, useContext, useReducer, useState } from "react";
 import ModalWrapper from "../../components/ModalWrapper";
 import PlaylistCreation from "../../components/PlaylistCreation";
+import userVideoDataReducer from "../../Reducers/userVideoDataReducer";
 
 const PlaylistContext = createContext({
   setShowPlaylistCreationModal: () => {},
@@ -9,9 +10,15 @@ const PlaylistContext = createContext({
 const PlaylistProvider = ({ children }) => {
   const [showPlaylistCreationModal, setShowPlaylistCreationModal] =
     useState(false);
-
+  const [videoToAddToPlaylist,setVideoToAddToPlaylist] = useState(null)
+  const [userVideoData,userVideoDispatch] = useReducer(userVideoDataReducer,{
+    playlists:[],
+    likedPlaylist:[],
+    watchLaterPlaylist:[],
+    historyPlaylist:[]
+  });
   return (
-    <PlaylistContext.Provider value={{showPlaylistCreationModal,setShowPlaylistCreationModal}}>
+    <PlaylistContext.Provider value={{showPlaylistCreationModal,setShowPlaylistCreationModal,videoToAddToPlaylist,setVideoToAddToPlaylist,userVideoData,userVideoDispatch}}>
       {showPlaylistCreationModal && 
       <ModalWrapper>
         <PlaylistCreation />

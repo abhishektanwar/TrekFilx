@@ -15,6 +15,7 @@ import { AuthProvider } from "./Contexts/AuthDialogContext";
 import { VideoListingProvider } from "./Contexts/VideoListingContext";
 import VideoPlayer from "./components/VideoPlayer";
 import { PlaylistProvider } from "./Contexts/PlaylistContext";
+import MockmanEs from "mockman-js";
 function App() {
   return (
     <div className="App">
@@ -36,6 +37,7 @@ function App() {
                     <Route path="/playlists" element={<Playlists />} />
                     {/* <Route path="/video" element={<VideoPage />} /> */}
                     <Route path="/video/:videoId" element={<VideoPage />} />
+                    <Route path="/mock-api" element={<MockmanEs />} />
                   </Routes>
                 </div>
               </PlaylistProvider>
