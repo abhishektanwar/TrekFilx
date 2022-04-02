@@ -4,7 +4,6 @@
 
 .vertical-card{
   max-width: 400px;
-  cursor: pointer;
 }
 
 .time-duration{
@@ -96,4 +95,8 @@
   top: 11rem;
   left: 12rem;
   right: unset;
+}
+
+.cursor-pointer{
+  cursor: pointer;
 }
