@@ -1,11 +1,16 @@
 import React, { createContext, useContext, useState } from 'react'
+import { useAuth } from '../AuthDialogContext';
+import { usePlaylist } from '../PlaylistContext';
 
 const ModalContext = createContext();
 
 const ModalProvider = ({children}) => {
   const [isModalVisible,setIsModalVisible] = useState(false);
+  const {setAuthType} = useAuth();
+  // const {setShowPlaylistCreationModal} = usePlaylist()
 
   const hideModal = () => {
+    // setAuthType(null);
     setIsModalVisible(false)
   }
 

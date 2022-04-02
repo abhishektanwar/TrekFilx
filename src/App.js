@@ -14,6 +14,7 @@ import { ModalProvider } from "./Contexts/ModalContext";
 import { AuthProvider } from "./Contexts/AuthDialogContext";
 import { VideoListingProvider } from "./Contexts/VideoListingContext";
 import VideoPlayer from "./components/VideoPlayer";
+import { PlaylistProvider } from "./Contexts/PlaylistContext";
 function App() {
   return (
     <div className="App">
@@ -21,22 +22,23 @@ function App() {
         <ModalProvider>
           <AuthProvider>
             <VideoListingProvider>
-              <nav className="nav-bar shadow-box" id="my-nav-bar">
-                <Header />
-              </nav>
-              <div className="main-container">
-                <AsideNav />
-                <Routes>
-                  <Route path="/" element={<Home />} />
-                  <Route path="/explore" element={<ExploreVideos />} />
-                  <Route path="/liked-videos" element={<LikedVideos />} />
-                  <Route path="/history" element={<History />} />
-                  <Route path="/playlists" element={<Playlists />} />
-                  {/* <Route path="/video" element={<VideoPage />} /> */}
-                  <Route path="/video/:videoId" element={<VideoPage />} />
-
-                </Routes>
-              </div>
+              <PlaylistProvider>
+                <nav className="nav-bar shadow-box" id="my-nav-bar">
+                  <Header />
+                </nav>
+                <div className="main-container">
+                  <AsideNav />
+                  <Routes>
+                    <Route path="/" element={<Home />} />
+                    <Route path="/explore" element={<ExploreVideos />} />
+                    <Route path="/liked-videos" element={<LikedVideos />} />
+                    <Route path="/history" element={<History />} />
+                    <Route path="/playlists" element={<Playlists />} />
+                    {/* <Route path="/video" element={<VideoPage />} /> */}
+                    <Route path="/video/:videoId" element={<VideoPage />} />
+                  </Routes>
+                </div>
+              </PlaylistProvider>
             </VideoListingProvider>
           </AuthProvider>
         </ModalProvider>
