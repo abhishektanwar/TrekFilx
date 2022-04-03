@@ -4,13 +4,28 @@ import {ReactComponent as Add} from '../../assets/add.svg'
 import { usePlaylist } from '../../Contexts/PlaylistContext'
 import PlaylistCard from '../../components/PlaylistCard'
 import './playlists.css';
+import { useAuth } from '../../Contexts/AuthDialogContext'
+import { useModal } from '../../Contexts/ModalContext'
 const Playlists = () => {
-  const {userVideoData:{playlists}} = usePlaylist()
+  const {userVideoData:{playlists},setVideoToAddToPlaylist,setShowPlaylistCreationModal} = usePlaylist()
+  const { user,setAuthType } = useAuth();
+  const { showModal } = useModal();
+  const createPlaylistHandler = () => {
+    if(user.isAuthenticated){
+      setVideoToAddToPlaylist(undefined)
+      setShowPlaylistCreationModal(true)
+      showModal()
+    }
+    else{
+      setAuthType('login')
+      showModal()
+    }
+  }
   return (
     <div>
       <div className="flex-row flex-align-item-center flex-justify-content-space-between">
         <h3>Your Playlists</h3>
-        <Button buttonStyle="secondary-button" icon={<Add />} buttonText="Create new playlist" />
+        <Button buttonStyle="secondary-button" icon={<Add />} buttonText="Create new playlist" onClick={()=>createPlaylistHandler()} />
       </div>
       <div>
         {playlists.length === 0 ? (

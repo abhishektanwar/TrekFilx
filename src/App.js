@@ -16,6 +16,7 @@ import { VideoListingProvider } from "./Contexts/VideoListingContext";
 import VideoPlayer from "./components/VideoPlayer";
 import { PlaylistProvider } from "./Contexts/PlaylistContext";
 import MockmanEs from "mockman-js";
+import Playlist from "./screens/Playlist";
 function App() {
   return (
     <div className="App">
@@ -35,6 +36,7 @@ function App() {
                     <Route path="/liked-videos" element={<LikedVideos />} />
                     <Route path="/history" element={<History />} />
                     <Route path="/playlists" element={<Playlists />} />
+                    <Route path="/playlist/:playlistId" element={<Playlist />} />
                     {/* <Route path="/video" element={<VideoPage />} /> */}
                     <Route path="/video/:videoId" element={<VideoPage />} />
                     <Route path="/mock-api" element={<MockmanEs />} />

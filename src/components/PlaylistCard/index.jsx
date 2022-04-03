@@ -1,18 +1,19 @@
 import React from "react";
+import { useNavigate } from 'react-router-dom'
 import "./playlist-card.css";
 const PlaylistCard = ({ playlist }) => {
-  // const {title} = playlist;
-  let x = Math.floor(Math.random() * playlist?.videos?.length);
+  const navigate = useNavigate();
+  let randomImageNumber = Math.floor(Math.random() * playlist?.videos?.length);
   return (
-    <div className="playlist-card-container flex-column margin-trb-20">
+    <div
+      className="playlist-card-container flex-column margin-trb-20"
+      onClick={() => navigate(`/playlist/${playlist._id}`)}
+    >
       {playlist?.videos?.length > 0 ? (
-        <div
-          class="image-container badge-container cursor-pointer"
-          // onClick={() => {})
-        >
+        <div class="image-container badge-container cursor-pointer">
           <>
             <img
-              src={playlist.videos[x].videoThumbnail}
+              src={playlist.videos[randomImageNumber].videoThumbnail}
               loading="lazy"
               alt={"imgAlt"}
               class="responsive-img image-container"
