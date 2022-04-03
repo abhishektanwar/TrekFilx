@@ -45,7 +45,7 @@ const AsideNav = () => {
             </span>
           }
           onClick={() => {
-            user ? navigate("/liked-videos") : handleLogin();
+            user.isAuthenticated ? navigate("/liked-videos") : handleLogin();
           }}
         />
         <Button
@@ -57,7 +57,7 @@ const AsideNav = () => {
             </span>
           }
           onClick={() => {
-            user ? navigate("/playlists") : handleLogin();
+            user.isAuthenticated ? navigate("/playlists") : handleLogin();
           }}
         />
         <Button
@@ -69,7 +69,7 @@ const AsideNav = () => {
             </span>
           }
           onClick={() => {
-            user ? navigate("/history") : handleLogin();
+            user.isAuthenticated ? navigate("/history") : handleLogin();
           }}
         />
     </div>
