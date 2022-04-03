@@ -32,7 +32,6 @@ function App() {
                   <Route path="/liked-videos" element={<LikedVideos />} />
                   <Route path="/history" element={<History />} />
                   <Route path="/playlists" element={<Playlists />} />
-                  {/* <Route path="/video" element={<VideoPage />} /> */}
                   <Route path="/video/:videoId" element={<VideoPage />} />
 
                 </Routes>

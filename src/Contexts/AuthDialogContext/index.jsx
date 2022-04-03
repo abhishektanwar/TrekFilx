@@ -27,7 +27,6 @@ export const AuthProvider = (props) => {
         email: user.email,
         password: user.password,
       });
-      console.log("login requrest resp", res);
       if (res.statusText === "OK") {
         utils.setLocalStorage("authToken", res.data.encodedToken);
         setIsLoading(false);
@@ -61,7 +60,6 @@ export const AuthProvider = (props) => {
         password: user.password,
       });
       if (res.statusText === "Created") {
-        // setUser(res.data.createdUser)
         setUser({
           ...res.data.foundUser,
           isAuthenticated: true,
