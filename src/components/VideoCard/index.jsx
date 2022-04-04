@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useCallback, useMemo } from "react";
 import "./video-card.css";
 import VideoCardDropDownMenu from "./VideoCardDropDownMenu";
 import {ReactComponent as DeleteIcon} from '../../assets/delete.svg'
@@ -6,6 +6,8 @@ import { useNavigate } from "react-router-dom";
 import { usePlaylist } from "../../Contexts/PlaylistContext";
 import { useModal } from "../../Contexts/ModalContext";
 import { useAuth } from "../../Contexts/AuthDialogContext";
+import usePlaylistApiCalls from "../../Hooks/usePlaylistApiCalls";
+import { checkVideoInPlaylist } from "../../helpers/helpers";
 const VideoCard = (props) => {
   const { variant, video, removeVideoFromPlaylistHandler } = props;
   const {
@@ -22,9 +24,11 @@ const VideoCard = (props) => {
     description,
   } = video;
   const navigate = useNavigate();
-  const {setShowPlaylistCreationModal,setVideoToAddToPlaylist} = usePlaylist();
+  const {setShowPlaylistCreationModal,setVideoToAddToPlaylist,userVideoData:{likedPlaylist}} = usePlaylist();
+  const { removeVideoFromLiked,addVideoToLiked } = usePlaylistApiCalls();
   const {showModal} = useModal()
   const {user,setAuthType} = useAuth()
+  const isVideoLiked = checkVideoInPlaylist(likedPlaylist,video)
   const handleAddToPlaylistHandler = (video) => {
     if(user.isAuthenticated){
       setVideoToAddToPlaylist(video)
@@ -35,7 +39,16 @@ const VideoCard = (props) => {
       setAuthType('login')
       showModal()
     }
-    // console.log("dropdown handleAddToPlaylistHandler",video)
+  }
+
+  const addToLikedVideosHandler = (video,isLikedVideo) => {
+    if(user.isAuthenticated){
+      isLikedVideo ? removeVideoFromLiked(user.encodedToken,video) : addVideoToLiked(user.encodedToken,video)
+    }
+    else{
+      setAuthType('login')
+      showModal()
+    }
   }
   if (variant === "vertical") {
     return (
@@ -57,7 +70,7 @@ const VideoCard = (props) => {
             <span style={{ width: "80%", whiteSpace: "break-spaces" }}>
               <h6 class="text-bold-weight body-typo-md wrap-word">{title}</h6>
             </span>
-            <VideoCardDropDownMenu handleAddToPlaylistHandler={()=>handleAddToPlaylistHandler(video)} />
+            <VideoCardDropDownMenu handleAddToPlaylistHandler={()=>handleAddToPlaylistHandler(video)} addToLikedVideosHandler={()=>addToLikedVideosHandler(video,isVideoLiked)} isVideoLiked={isVideoLiked} />
             <span className="time-duration">{videoLength} </span>
           </div>
           <p

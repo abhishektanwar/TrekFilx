@@ -4,7 +4,7 @@ import { usePlaylist } from "../Contexts/PlaylistContext";
 import { dispatchActioTypes } from "../Reducers/dispatchActionTypes";
 
 function usePlaylistApiCalls() {
-  const {CREATE_PLAYLIST_WITH_VIDEO,UPDATE_PLAYLIST} = dispatchActioTypes
+  const {CREATE_PLAYLIST_WITH_VIDEO,UPDATE_PLAYLIST,UPDATE_LIKED_VIDEO} = dispatchActioTypes
   const [updatingPlaylist,setUpdatingPlaylist] = useState(false)
   const [creatingNewPlaylist, setCreatingNewPlaylist] = useState(false);
 
@@ -74,7 +74,45 @@ function usePlaylistApiCalls() {
     }
   } 
 
-  return {createPlaylistWithVideo,updatingPlaylist,creatingNewPlaylist,removeVideoFromPlaylist,addVideoToPlaylist}
+  const addVideoToLiked = async(authToken,video) => {
+    setUpdatingPlaylist(true);
+    try {
+      let res;
+      res = await axios.post(
+        "/api/user/likes",
+        { video },
+        { headers: { authorization: authToken } }
+      );
+      if (res.status === 201) {
+        userVideoDispatch({ type: UPDATE_LIKED_VIDEO, payload: { data: res.data } });
+      }
+      console.log("addVideoToLiked", res);
+    setUpdatingPlaylist(false);
+
+    } catch (err) {
+      console.log("err in addVideoToLIKED", err);
+    }
+  } 
+  const removeVideoFromLiked = async(authToken,video) => {
+    setUpdatingPlaylist(true);
+    try {
+      let res;
+      res = await axios.delete(
+        `/api/user/likes/${video._id}`,
+        { headers: { authorization: authToken } }
+      );
+      if (res.status === 200) {
+        userVideoDispatch({ type: UPDATE_LIKED_VIDEO, payload: { data: res.data } });
+      }
+      console.log("removed from liked videos", res);
+    setUpdatingPlaylist(false);
+
+    } catch (err) {
+      console.log("err in remove from liked videos", err);
+    }
+  } 
+
+  return {createPlaylistWithVideo,updatingPlaylist,creatingNewPlaylist,removeVideoFromPlaylist,addVideoToPlaylist,addVideoToLiked,removeVideoFromLiked}
 }
 
 export default usePlaylistApiCalls;

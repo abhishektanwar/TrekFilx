@@ -1,22 +1,36 @@
 import React from "react";
 import { ReactComponent as PlaylistAdd } from "../../assets/playlist-add.svg";
 import { ReactComponent as Like } from "../../assets/like.svg";
+import { ReactComponent as LikeFilled } from "../../assets/like-filled.svg";
 import { ReactComponent as WatchLater } from "../../assets/watch-later.svg";
 import Button from "../Buttons/Button";
 import "./video-player.css";
 import { usePlaylist } from "../../Contexts/PlaylistContext";
 import { useModal } from "../../Contexts/ModalContext";
 import { useAuth } from "../../Contexts/AuthDialogContext";
+import usePlaylistApiCalls from "../../Hooks/usePlaylistApiCalls";
 
 const VideoPlayer = ({video}) => {
-  const {setShowPlaylistCreationModal,setVideoToAddToPlaylist} = usePlaylist();
+  const {setShowPlaylistCreationModal,setVideoToAddToPlaylist,userVideoData:{likedPlaylist}} = usePlaylist();
   const {showModal} = useModal()
   const {user,setAuthType} = useAuth()
+  const { addVideoToLiked,removeVideoFromLiked } = usePlaylistApiCalls()
+  const isVideoLiked = likedPlaylist?.find((item)=>item._id === video._id)
   const handleAddToPlaylist = () => {
     if(user.isAuthenticated){
       setVideoToAddToPlaylist(video)
       setShowPlaylistCreationModal(true)
       showModal()
+    }
+    else{
+      setAuthType('login')
+      showModal()
+    }
+  }
+
+  const videoLikeHandler = (video,isLikedVideo)=> {
+    if(user.isAuthenticated){
+      isLikedVideo ? removeVideoFromLiked(user.encodedToken,video) : addVideoToLiked(user.encodedToken,video)
     }
     else{
       setAuthType('login')
@@ -46,10 +60,11 @@ const VideoPlayer = ({video}) => {
               buttonStyle={`body-typo-md text-medium-weight secondary-button yt-video-action-btn`}
               icon={
                 <span style={{ marginRight: "1rem" }}>
-                  <Like />
+                  {isVideoLiked ? <LikeFilled /> : <Like /> }
+                  
                 </span>
               }
-              onClick={() => {}}
+              onClick={() => videoLikeHandler(video,isVideoLiked)}
             />
             <Button
               buttonText="Add to Playlist"
