@@ -3,6 +3,7 @@ import { ReactComponent as PlaylistAdd } from "../../assets/playlist-add.svg";
 import { ReactComponent as Like } from "../../assets/like.svg";
 import { ReactComponent as LikeFilled } from "../../assets/like-filled.svg";
 import { ReactComponent as WatchLater } from "../../assets/watch-later.svg";
+import { ReactComponent as WatchLaterFilled } from "../../assets/watch-later-filled.svg";
 import Button from "../Buttons/Button";
 import "./video-player.css";
 import { usePlaylist } from "../../Contexts/PlaylistContext";
@@ -11,11 +12,13 @@ import { useAuth } from "../../Contexts/AuthDialogContext";
 import usePlaylistApiCalls from "../../Hooks/usePlaylistApiCalls";
 
 const VideoPlayer = ({video}) => {
-  const {setShowPlaylistCreationModal,setVideoToAddToPlaylist,userVideoData:{likedPlaylist}} = usePlaylist();
+  const {setShowPlaylistCreationModal,setVideoToAddToPlaylist,userVideoData:{likedPlaylist,watchLaterPlaylist}} = usePlaylist();
   const {showModal} = useModal()
   const {user,setAuthType} = useAuth()
-  const { addVideoToLiked,removeVideoFromLiked } = usePlaylistApiCalls()
+  const { addVideoToLiked,removeVideoFromLiked,addVideoToWatchLater,removeVideoFromWatchLater } = usePlaylistApiCalls()
   const isVideoLiked = likedPlaylist?.find((item)=>item._id === video._id)
+  const isVideoWatchLater = watchLaterPlaylist?.find((item)=>item._id === video._id)
+
   const handleAddToPlaylist = () => {
     if(user.isAuthenticated){
       setVideoToAddToPlaylist(video)
@@ -31,6 +34,16 @@ const VideoPlayer = ({video}) => {
   const videoLikeHandler = (video,isLikedVideo)=> {
     if(user.isAuthenticated){
       isLikedVideo ? removeVideoFromLiked(user.encodedToken,video) : addVideoToLiked(user.encodedToken,video)
+    }
+    else{
+      setAuthType('login')
+      showModal()
+    }
+  }
+
+  const videoWatchLaterHandler = (video,isWatchLaterVideo) => {
+    if(user.isAuthenticated){
+      isWatchLaterVideo ? removeVideoFromWatchLater(user.encodedToken,video) : addVideoToWatchLater(user.encodedToken,video)
     }
     else{
       setAuthType('login')
@@ -60,8 +73,7 @@ const VideoPlayer = ({video}) => {
               buttonStyle={`body-typo-md text-medium-weight secondary-button yt-video-action-btn`}
               icon={
                 <span style={{ marginRight: "1rem" }}>
-                  {isVideoLiked ? <LikeFilled /> : <Like /> }
-                  
+                  {isVideoLiked && user.isAuthenticated ? <LikeFilled /> : <Like /> }
                 </span>
               }
               onClick={() => videoLikeHandler(video,isVideoLiked)}
@@ -77,14 +89,14 @@ const VideoPlayer = ({video}) => {
               onClick={() => handleAddToPlaylist()}
             />
             <Button
-              buttonText="Watch Later"
+              buttonText={isVideoWatchLater && user.isAuthenticated ? 'Added to Watch Later' : 'Watch Later'}
               buttonStyle={`body-typo-md text-medium-weight secondary-button yt-video-action-btn`}
               icon={
                 <span style={{ marginRight: "1rem" }}>
-                  <WatchLater />
+                  {isVideoWatchLater && user.isAuthenticated ? <WatchLaterFilled /> : <WatchLater /> }
                 </span>
               }
-              onClick={() => {}}
+              onClick={() => {videoWatchLaterHandler(video,isVideoWatchLater)}}
             />
             </div>
           </div>

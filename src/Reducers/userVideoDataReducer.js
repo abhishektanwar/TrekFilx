@@ -1,7 +1,7 @@
 import { dispatchActioTypes } from "./dispatchActionTypes"
 
 const userVideoDataReducer = (state,action) => {
-  const {CREATE_PLAYLIST_WITH_VIDEO, UPDATE_PLAYLIST,UPDATE_LIKED_VIDEO} = dispatchActioTypes;
+  const {CREATE_PLAYLIST_WITH_VIDEO, UPDATE_PLAYLIST,UPDATE_LIKED_VIDEO,UPDATE_WATCH_LATER,UPDATE_HISTORY} = dispatchActioTypes;
   switch(action.type){
     case CREATE_PLAYLIST_WITH_VIDEO:
       // const playlists = 
@@ -23,6 +23,16 @@ const userVideoDataReducer = (state,action) => {
         ...state,
         likedPlaylist:[...action.payload.data.likes]
       }
+    case UPDATE_WATCH_LATER:
+      return {
+        ...state,
+        watchLaterPlaylist:[...action.payload.data.watchlater]
+      }
+    case UPDATE_HISTORY:
+    return {
+      ...state,
+      historyPlaylist:[...action.payload.data.history]
+    }
 
     default:
       return state

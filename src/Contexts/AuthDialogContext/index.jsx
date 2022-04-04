@@ -4,6 +4,7 @@ import SignUp from "../../components/Authentication/SignUp";
 import ModalWrapper from "../../components/ModalWrapper";
 import axios from "axios";
 import utils from "../../utils";
+import { useNavigate } from "react-router-dom";
 export const AuthContext = createContext({
   showModal: false,
   setShowModal: () => {},
@@ -19,6 +20,7 @@ export const AuthProvider = (props) => {
     isAuthenticated: false,
     encodedToken: "",
   });
+  const navigate = useNavigate();
 
   const loginHandler = async (user) => {
     setIsLoading(true);
@@ -54,6 +56,7 @@ export const AuthProvider = (props) => {
       isAuthenticated: false,
       encodedToken: "",
     });
+    navigate('/')
   };
 
   const signUpHandler = async (user) => {

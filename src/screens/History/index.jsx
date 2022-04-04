@@ -1,19 +1,49 @@
-import React from 'react'
-import Button from '../../components/Buttons/Button'
-import VideoCard from '../../components/VideoCard'
-import {ReactComponent as DeleteIcon} from '../../assets/delete.svg'
+import React from "react";
+import Button from "../../components/Buttons/Button";
+import VideoCard from "../../components/VideoCard";
+import { ReactComponent as DeleteIcon } from "../../assets/delete.svg";
+import usePlaylistApiCalls from "../../Hooks/usePlaylistApiCalls";
+import { usePlaylist } from "../../Contexts/PlaylistContext";
+import { useAuth } from "../../Contexts/AuthDialogContext";
 const History = () => {
+  const {
+    userVideoData: { historyPlaylist },
+  } = usePlaylist();
+  const { removeVideoFromHistory,clearWatchHistory } = usePlaylistApiCalls();
+  const { user } = useAuth();
   return (
     <div>
       <div className="flex-row flex-align-item-center flex-justify-content-space-between">
         <h3>Watch History</h3>
-        <Button buttonStyle="secondary-button" icon={<DeleteIcon />} buttonText="Clear All History" />
+        <Button
+          buttonStyle="secondary-button"
+          icon={<DeleteIcon />}
+          buttonText="Clear All History"
+          onClick={()=>clearWatchHistory(user.encodedToken)}
+        />
       </div>
-      {/* <div className="flex-column flex-align-item-center">
-        {[1,2,3,4,5,6,7,8].map((item)=><VideoCard />)}
-      </div> */}
+      <div>
+        {historyPlaylist.length === 0 ? (
+          <div className="flex-row flex-justify-content-center margin-top-20">
+            <h3>You do not have any watch history.</h3>
+          </div>
+        ) : (
+          <div className="flex-column flex-align-item-center">
+            {historyPlaylist.map((video) => {
+              return <VideoCard
+              variant="horizontal"
+              video={video}
+              key={video._id}
+              removeVideoFromPlaylistHandler={() =>
+                removeVideoFromHistory(user.encodedToken,video)
+              }
+            />;
+            })}
+          </div>
+        )}
+      </div>
     </div>
-  )
-}
+  );
+};
 
-export default History
+export default History;

@@ -3,6 +3,7 @@ import { Link } from "react-router-dom";
 import { v4 as uuid } from "uuid";
 import { ReactComponent as Explore } from "../../assets/explore.svg";
 import { ReactComponent as History } from "../../assets/history.svg";
+import { ReactComponent as WatchLater } from "../../assets/watch-later.svg";
 import { ReactComponent as PlaylistAddCheck } from "../../assets/playlist-add-check.svg";
 import { ReactComponent as Like } from "../../assets/like.svg";
 import "./aside-nav.css";
@@ -58,6 +59,18 @@ const AsideNav = () => {
           }
           onClick={() => {
             user.isAuthenticated ? navigate("/playlists") : handleLogin();
+          }}
+        />
+        <Button
+          buttonText="Watch Later"
+          buttonStyle={`aside-nav-item body-typo-md text-medium-weight secondary-button ${currentLocation==='/watch-later' ? 'active-nav' : ''}`}
+          icon={
+            <span style={{ marginRight: "1rem" }}>
+              <WatchLater />
+            </span>
+          }
+          onClick={() => {
+            user.isAuthenticated ? navigate("/watch-later") : handleLogin();
           }}
         />
         <Button

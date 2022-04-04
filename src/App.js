@@ -17,6 +17,7 @@ import VideoPlayer from "./components/VideoPlayer";
 import { PlaylistProvider } from "./Contexts/PlaylistContext";
 import MockmanEs from "mockman-js";
 import Playlist from "./screens/Playlist";
+import WatchLater from "./screens/WatchLater";
 function App() {
   return (
     <div className="App">
@@ -41,6 +42,7 @@ function App() {
                       element={<Playlist />}
                     />
                     <Route path="/video/:videoId" element={<VideoPage />} />
+                    <Route path="/watch-later" element={<WatchLater />} />
                     <Route path="/mock-api" element={<MockmanEs />} />
                   </Routes>
                 </div>

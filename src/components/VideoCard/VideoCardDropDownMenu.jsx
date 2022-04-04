@@ -1,15 +1,20 @@
 import React, { useState } from "react";
 import { ReactComponent as MoreVertical } from "../../assets/more-vertical.svg";
 import { ReactComponent as WatchLater } from "../../assets/watch-later.svg";
+import { ReactComponent as WatchLaterFilled } from "../../assets/watch-later-filled.svg";
 import { ReactComponent as AddToPlaylist } from "../../assets/playlist-add.svg";
 import { ReactComponent as Like } from "../../assets/like.svg";
 import { ReactComponent as LikeFilled } from "../../assets/like-filled.svg";
 import "./video-card.css";
+import { useAuth } from "../../Contexts/AuthDialogContext";
 function DropdownMenu({
   handleAddToPlaylistHandler,
   addToLikedVideosHandler,
   isVideoLiked,
+  addToWatchLaterHandler,
+  isVideoWatchLater,
 }) {
+  const { user } = useAuth();
   function DropdownItem(props) {
     return (
       <button className="menu-item" onClick={props.onClick}>
@@ -29,13 +34,16 @@ function DropdownMenu({
         Add to Playlist
       </DropdownItem>
       <DropdownItem
-        leftIcon={isVideoLiked ? <LikeFilled /> : <Like />}
+        leftIcon={isVideoLiked && user.isAuthenticated && user.isAuthenticated ? <LikeFilled /> : <Like />}
         onClick={() => addToLikedVideosHandler()}
       >
-        {isVideoLiked ? 'Remove like ' : 'Like Video'}
+        {isVideoLiked && user.isAuthenticated ? "Remove like " : "Like Video"}
       </DropdownItem>
-      <DropdownItem leftIcon={<WatchLater />} onClick={() => {}}>
-        Watch Later
+      <DropdownItem
+        leftIcon={isVideoWatchLater && user.isAuthenticated ? <WatchLaterFilled /> : <WatchLater />}
+        onClick={() => addToWatchLaterHandler()}
+      >
+        {isVideoWatchLater && user.isAuthenticated ? "Remove from watch later" : "Watch later"}
       </DropdownItem>
     </div>
   );
@@ -44,7 +52,9 @@ function DropdownMenu({
 const VideoCardDropDownMenu = ({
   handleAddToPlaylistHandler,
   addToLikedVideosHandler,
+  addToWatchLaterHandler,
   isVideoLiked,
+  isVideoWatchLater,
 }) => {
   const [openVideoCardDropDownMenu, setOpenVideoCardDropDownMenu] =
     useState(false);
@@ -59,6 +69,8 @@ const VideoCardDropDownMenu = ({
           handleAddToPlaylistHandler={handleAddToPlaylistHandler}
           addToLikedVideosHandler={addToLikedVideosHandler}
           isVideoLiked={isVideoLiked}
+          addToWatchLaterHandler={addToWatchLaterHandler}
+          isVideoWatchLater={isVideoWatchLater}
         />
       )}
     </div>
