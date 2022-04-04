@@ -1,9 +1,13 @@
 import React from "react";
 import "./video-card.css";
 import VideoCardDropDownMenu from "./VideoCardDropDownMenu";
+import {ReactComponent as DeleteIcon} from '../../assets/delete.svg'
 import { useNavigate } from "react-router-dom";
+import { usePlaylist } from "../../Contexts/PlaylistContext";
+import { useModal } from "../../Contexts/ModalContext";
+import { useAuth } from "../../Contexts/AuthDialogContext";
 const VideoCard = (props) => {
-  const { variant, video } = props;
+  const { variant, video, removeVideoFromPlaylistHandler } = props;
   const {
     title,
     youtubeID,
@@ -18,6 +22,21 @@ const VideoCard = (props) => {
     description,
   } = video;
   const navigate = useNavigate();
+  const {setShowPlaylistCreationModal,setVideoToAddToPlaylist} = usePlaylist();
+  const {showModal} = useModal()
+  const {user,setAuthType} = useAuth()
+  const handleAddToPlaylistHandler = (video) => {
+    if(user.isAuthenticated){
+      setVideoToAddToPlaylist(video)
+      setShowPlaylistCreationModal(true)
+      showModal()
+    }
+    else{
+      setAuthType('login')
+      showModal()
+    }
+    // console.log("dropdown handleAddToPlaylistHandler",video)
+  }
   if (variant === "vertical") {
     return (
       <div class="vertical-card flex-column margin-trb-20">
@@ -38,7 +57,7 @@ const VideoCard = (props) => {
             <span style={{ width: "80%", whiteSpace: "break-spaces" }}>
               <h6 class="text-bold-weight body-typo-md wrap-word">{title}</h6>
             </span>
-            <VideoCardDropDownMenu />
+            <VideoCardDropDownMenu handleAddToPlaylistHandler={()=>handleAddToPlaylistHandler(video)} />
             <span className="time-duration">{videoLength} </span>
           </div>
           <p
@@ -58,7 +77,7 @@ const VideoCard = (props) => {
   } else {
     return (
       <div class="horizontal-card margin-trb-20">
-        <div class="image-container badge-container">
+        <div class="image-container badge-container cursor-pointer" onClick={() => navigate(`/video/${youtubeID}`)}>
           <img
             src={videoThumbnail}
             loading="lazy"
@@ -80,6 +99,7 @@ const VideoCard = (props) => {
           >
             {channelName} |{` ${views} views`}
           </p>
+          <span onClick={()=>removeVideoFromPlaylistHandler()} style={{marginLeft:'auto'}} className="cursor-pointer"><DeleteIcon /></span>
         </div>
       </div>
     );

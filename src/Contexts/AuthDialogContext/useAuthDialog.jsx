@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 
 export const useAuthDialog = () => {
-  const [authType,setAuthType] = useState(null);
+  const [authType,setAuthType] = useState(false);
   const [creds,setCreds] = useState({});
 
   const handleAuthCreds = (e) => {

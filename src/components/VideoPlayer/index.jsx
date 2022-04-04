@@ -4,8 +4,25 @@ import { ReactComponent as Like } from "../../assets/like.svg";
 import { ReactComponent as WatchLater } from "../../assets/watch-later.svg";
 import Button from "../Buttons/Button";
 import "./video-player.css";
+import { usePlaylist } from "../../Contexts/PlaylistContext";
+import { useModal } from "../../Contexts/ModalContext";
+import { useAuth } from "../../Contexts/AuthDialogContext";
 
 const VideoPlayer = ({video}) => {
+  const {setShowPlaylistCreationModal,setVideoToAddToPlaylist} = usePlaylist();
+  const {showModal} = useModal()
+  const {user,setAuthType} = useAuth()
+  const handleAddToPlaylist = () => {
+    if(user.isAuthenticated){
+      setVideoToAddToPlaylist(video)
+      setShowPlaylistCreationModal(true)
+      showModal()
+    }
+    else{
+      setAuthType('login')
+      showModal()
+    }
+  }
   return (
     <div>
       <iframe
@@ -42,7 +59,7 @@ const VideoPlayer = ({video}) => {
                   <PlaylistAdd />
                 </span>
               }
-              onClick={() => {}}
+              onClick={() => handleAddToPlaylist()}
             />
             <Button
               buttonText="Watch Later"

@@ -12,7 +12,7 @@ export const AuthContext = createContext({
 });
 
 export const AuthProvider = (props) => {
-  const [authType, setAuthType] = useState(null);
+  const [authType, setAuthType] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState({ errorExists: false, errorMessage: "" });
   const [user, setUser] = useState({
@@ -36,6 +36,7 @@ export const AuthProvider = (props) => {
           isAuthenticated: true,
           encodedToken: res.data.encodedToken,
         });
+        setAuthType(false);
         return true;
       }
     } catch (e) {
@@ -49,7 +50,10 @@ export const AuthProvider = (props) => {
 
   const logoutHandler = () => {
     utils.removeLocalStorage("authToken");
-    setUser(null);
+    setUser({
+      isAuthenticated: false,
+      encodedToken: "",
+    });
   };
 
   const signUpHandler = async (user) => {
@@ -67,6 +71,7 @@ export const AuthProvider = (props) => {
         });
         utils.setLocalStorage("authToken", res.data.encodedToken);
         setError({ errorExists: false, errorMessage: "" });
+        setAuthType(false);
         setIsLoading(false);
         return true;
       }
@@ -98,11 +103,12 @@ export const AuthProvider = (props) => {
         error,
       }}
     >
+      {authType !==false && 
       <ModalWrapper>
         {user && user.email}
         {user && user.password}
         {authType === "login" ? <Login /> : <SignUp />}
-      </ModalWrapper>
+      </ModalWrapper>}
       {props.children}
     </AuthContext.Provider>
   );
