@@ -27,7 +27,7 @@ const VideoPlayer = ({video}) => {
     <div>
       <iframe
         width="100%"
-        src={`https://www.youtube.com/embed/${video.youtubeID}`}
+        src={`https://www.youtube.com/embed/${video?.youtubeID}`}
         title="Video Player"
         frameBorder={0}
         allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
@@ -37,12 +37,12 @@ const VideoPlayer = ({video}) => {
       ></iframe>
       <div>
         <div className="yt-video-title-container">
-          <h3>{video.title}</h3>
+          <h3>{video?.title}</h3>
           <div className="yt-video-description-container" style={{marginTop:'-20px'}}>
-            <p class="body-typo-md text-light-weight yt-video-views">{`${video.views} views ${" "}`}</p>
+            <p class="body-typo-md text-light-weight yt-video-views">{`${video?.views} views ${" "}`}</p>
             <div className="flex-row yt-video-action-button-container" >
             <Button
-              buttonText={video.likes}
+              buttonText={video?.likes}
               buttonStyle={`body-typo-md text-medium-weight secondary-button yt-video-action-btn`}
               icon={
                 <span style={{ marginRight: "1rem" }}>
@@ -82,7 +82,7 @@ const VideoPlayer = ({video}) => {
           style={{ marginLeft: "4rem" }}
         >
           <img
-            src={video.channelThumbnail}
+            src={video?.channelThumbnail}
             alt="avatar"
             loading="lazy"
             className="responsive-img circular-img"
@@ -90,8 +90,8 @@ const VideoPlayer = ({video}) => {
         </div>
 
         <div className="flex-column">
-          <p className="body-typo-md">{video.channelName}</p>
-          <p className="body-typo-sm">{`${video.subscribers} Subscribers`}</p>
+          <p className="body-typo-md">{video?.channelName}</p>
+          <p className="body-typo-sm">{`${video?.subscribers} Subscribers`}</p>
         </div>
       </div>
     </div>

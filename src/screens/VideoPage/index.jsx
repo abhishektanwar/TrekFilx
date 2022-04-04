@@ -17,7 +17,7 @@ const VideoPage = () => {
   return (
     <div>
       <VideoPlayer video={video} />
-      {relatedVideos.length > 0 ? (
+      {relatedVideos?.length > 0 ? (
         <>
         <div className="flex-align-item-center flex-justigy-content-center flex-row">
           <h2>Related Videos</h2>
