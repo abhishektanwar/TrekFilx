@@ -3,9 +3,11 @@ import Button from "../../components/Buttons/Button";
 import { ReactComponent as Add } from "../../assets/add.svg";
 import { usePlaylist } from "../../Contexts/PlaylistContext";
 import PlaylistCard from "../../components/PlaylistCard";
-import "./playlists.css";
 import { useAuth } from "../../Contexts/AuthDialogContext";
 import { useModal } from "../../Contexts/ModalContext";
+import { useDocumentTitle } from '../../helpers/helpers'
+import "./playlists.css";
+
 const Playlists = () => {
   const {
     userVideoData: { playlists },
@@ -24,6 +26,7 @@ const Playlists = () => {
       showModal();
     }
   };
+  useDocumentTitle("Trek Flix | Playlists")
   return (
     <div>
       <div className="flex-row flex-align-item-center flex-justify-content-space-between page-heading">

@@ -3,9 +3,10 @@ import { usePlaylist } from "../../Contexts/PlaylistContext";
 import { useParams } from "react-router-dom";
 import VideoCard from "../../components/VideoCard";
 import ErrorPage from "../../components/ErrorPage";
-import "./playlist.css";
 import usePlaylistApiCalls from "../../Hooks/usePlaylistApiCalls";
 import { useAuth } from "../../Contexts/AuthDialogContext";
+import { useDocumentTitle } from '../../helpers/helpers'
+import "./playlist.css";
 
 const Playlist = () => {
   const {
@@ -20,6 +21,7 @@ const Playlist = () => {
   const removeVideoFromPlaylistHandler = (playlist, video) => {
     removeVideoFromPlaylist(playlist, user.encodedToken, video);
   };
+  useDocumentTitle("Trek Flix | Playlist")
   if (playlist === undefined) {
     return <ErrorPage message="Oops! Requested playlist not found" />;
   }

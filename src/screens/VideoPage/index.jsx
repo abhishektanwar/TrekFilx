@@ -3,6 +3,7 @@ import { useParams } from "react-router";
 import VideoListingGrid from "../../components/VideoListingGrid";
 import VideoPlayer from "../../components/VideoPlayer";
 import { useVideoListing } from "../../Contexts/VideoListingContext";
+import { useDocumentTitle } from '../../helpers/helpers'
 
 const VideoPage = () => {
   const { videoListingState } = useVideoListing();
@@ -13,6 +14,7 @@ const VideoPage = () => {
   if(video !== undefined){
     relatedVideos = videos.filter((item)=>item.category === video.category);
   }
+  useDocumentTitle("Trek Flix | Video Play")
 
   return (
     <div>

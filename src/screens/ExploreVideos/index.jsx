@@ -1,9 +1,9 @@
 import React from "react";
-import VideoCard from "../../components/VideoCard";
 import VideoListingGrid from "../../components/VideoListingGrid";
 import { useVideoListing } from "../../Contexts/VideoListingContext";
 import { dispatchActioTypes } from "../../Reducers/dispatchActionTypes";
 import {categoryFilter} from '../../helpers/helpers'
+import { useDocumentTitle } from '../../helpers/helpers'
 import "./explore-videos.css";
 const ExploreVideos = () => {
   const {
@@ -36,6 +36,7 @@ const ExploreVideos = () => {
       },
     });
   };
+  useDocumentTitle("Trek Flix | Explore")
   return (
     <div className="flex-column">
       <div className="chip-container">

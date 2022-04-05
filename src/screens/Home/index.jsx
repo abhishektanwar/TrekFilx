@@ -1,16 +1,14 @@
 import React from "react";
 import CardSlider from "../../components/CardSlider";
 import HeroBanner from '../../components/HeroBanner'
-import VideoCard from "../../components/VideoCard";
-import {v4 as uuid} from 'uuid'
 import { useVideoListing } from "../../Contexts/VideoListingContext";
 import FeaturedContainer from "../../components/FeaturedContainer";
+import { useDocumentTitle } from '../../helpers/helpers'
 
 const Home = () => {
-  const {videoListingState:{videos,categories,categoriesData},videoListingDispatch} = useVideoListing();
-  // const {videos} = videoListingState;
+  const {videoListingState:{videos,categories,},videoListingDispatch} = useVideoListing();
   const featuredVideos = videos.filter(video => video.featured);
-  // console.log("videoListingState",videoListingState)
+  useDocumentTitle("Trek Flix");
   return (
     <div className="app-container">
       <HeroBanner />

@@ -5,12 +5,15 @@ import { ReactComponent as DeleteIcon } from "../../assets/delete.svg";
 import usePlaylistApiCalls from "../../Hooks/usePlaylistApiCalls";
 import { usePlaylist } from "../../Contexts/PlaylistContext";
 import { useAuth } from "../../Contexts/AuthDialogContext";
+import { useDocumentTitle } from '../../helpers/helpers'
+
 const History = () => {
   const {
     userVideoData: { historyPlaylist },
   } = usePlaylist();
   const { removeVideoFromHistory,clearWatchHistory } = usePlaylistApiCalls();
   const { user } = useAuth();
+  useDocumentTitle("Trek Flix | History")
   return (
     <div>
       <div className="flex-row flex-align-item-center flex-justify-content-space-between page-heading">

@@ -1,3 +1,4 @@
+import { useEffect, useState } from "react";
 const checkVideoInPlaylist = (playlist,video) =>{
   return playlist?.find((item)=>item._id === video._id)
 }
@@ -18,4 +19,14 @@ const categoryFilter = (videos, categories) => {
   return categoryFilterApplied ? newDataList : videos;
 };
 
-export {checkVideoInPlaylist,categoryFilter};
+
+const useDocumentTitle = (title) => {
+  const [documentTitle, setDocumentTitle] = useState(title);
+  useEffect(() => {
+    document.title = documentTitle;
+  }, [documentTitle]);
+
+  return [documentTitle, setDocumentTitle];
+};
+
+export {checkVideoInPlaylist,categoryFilter,useDocumentTitle};

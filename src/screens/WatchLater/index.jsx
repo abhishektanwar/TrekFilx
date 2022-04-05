@@ -3,6 +3,7 @@ import VideoCard from "../../components/VideoCard";
 import { useAuth } from "../../Contexts/AuthDialogContext";
 import { usePlaylist } from "../../Contexts/PlaylistContext";
 import usePlaylistApiCalls from "../../Hooks/usePlaylistApiCalls";
+import { useDocumentTitle } from '../../helpers/helpers'
 
 const WatchLater = () => {
   const {
@@ -10,6 +11,7 @@ const WatchLater = () => {
   } = usePlaylist();
   const { removeVideoFromWatchLater } = usePlaylistApiCalls();
   const { user } = useAuth();
+  useDocumentTitle("Trek Flix | Watch Later");
   return (
     <div>
       <div className="flex-row flex-align-item-center flex-justify-content-space-between page-heading">

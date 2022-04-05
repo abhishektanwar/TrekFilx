@@ -1,10 +1,9 @@
 import React from 'react'
-import Button from '../../components/Buttons/Button';
 import VideoCard from '../../components/VideoCard';
-import VideoListingGrid from '../../components/VideoListingGrid'
 import { useAuth } from '../../Contexts/AuthDialogContext';
 import { usePlaylist } from '../../Contexts/PlaylistContext';
 import usePlaylistApiCalls from '../../Hooks/usePlaylistApiCalls';
+import { useDocumentTitle } from '../../helpers/helpers'
 
 const LikedVideos = () => {
   const {
@@ -12,6 +11,7 @@ const LikedVideos = () => {
   } = usePlaylist();
   const {removeVideoFromLiked} = usePlaylistApiCalls();
   const { user } = useAuth();
+  useDocumentTitle("Trek Flix | Liked Videos");
   return (
     <div>
       <div className="flex-row flex-align-item-center flex-justify-content-space-between page-heading">
