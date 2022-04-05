@@ -2,8 +2,9 @@ import axios from "axios";
 import { useState } from "react";
 import { usePlaylist } from "../Contexts/PlaylistContext";
 import { dispatchActioTypes } from "../Reducers/dispatchActionTypes";
-
+import { useToast } from "../Hooks/useToast";
 function usePlaylistApiCalls() {
+  const { customToast } = useToast();
   const {
     CREATE_PLAYLIST_WITH_VIDEO,
     UPDATE_PLAYLIST,
@@ -33,14 +34,19 @@ function usePlaylistApiCalls() {
           type: CREATE_PLAYLIST_WITH_VIDEO,
           payload: { data: res.data },
         });
+        playlist.videos.length === 0
+          ? customToast(`Empty playlist created.`, "success")
+          : customToast(`Video added to playlisadst.`, "success");
         setPlaylistName("");
         setCreatingNewPlaylist(false);
       }
       console.log("add playlist", res);
-      setUpdatingPlaylist(false);
     } catch (err) {
+      // if (playlist.video.length)
+      customToast(`Failed to add video to playlist.`, "error");
       console.log("err in playlist creation w/ video arg", err);
     }
+    setUpdatingPlaylist(false);
   };
 
   const removeVideoFromPlaylist = async (playlist, authToken, video) => {
@@ -56,10 +62,12 @@ function usePlaylistApiCalls() {
           type: UPDATE_PLAYLIST,
           payload: { data: res.data },
         });
+        customToast(`Video removed from playlist.`, "success");
       }
       console.log("removeVideoFromPlaylist", res);
       setUpdatingPlaylist(false);
     } catch (err) {
+      customToast(`Failed to remove video from playlist.`, "error");
       console.log("err in removeVideoFromPlaylist w/ video arg", err);
     }
   };
@@ -78,10 +86,12 @@ function usePlaylistApiCalls() {
           type: UPDATE_PLAYLIST,
           payload: { data: res.data },
         });
+        customToast(`Video added to playlist.`, "success");
       }
       console.log("addVideoToPlaylist", res);
       setUpdatingPlaylist(false);
     } catch (err) {
+      customToast(`Failed to add video to playlist.`, "error");
       console.log("err in addVideoToPlaylist w/ video arg", err);
     }
   };
@@ -100,10 +110,12 @@ function usePlaylistApiCalls() {
           type: UPDATE_LIKED_VIDEO,
           payload: { data: res.data },
         });
+        customToast(`Video added to liked videos`, "success");
       }
       console.log("addVideoToLiked", res);
       setUpdatingPlaylist(false);
     } catch (err) {
+      customToast(`Failed to add video to liked videos`, "error");
       console.log("err in addVideoToLIKED", err);
     }
   };
@@ -121,8 +133,10 @@ function usePlaylistApiCalls() {
         });
       }
       console.log("removed from liked videos", res);
+      customToast(`Video removed from liked videos`, "success");
       setUpdatingPlaylist(false);
     } catch (err) {
+      customToast(`Failed to remove video from liked videos`, "error");
       console.log("err in remove from liked videos", err);
     }
   };
@@ -142,10 +156,12 @@ function usePlaylistApiCalls() {
           type: UPDATE_WATCH_LATER,
           payload: { data: res.data },
         });
+        customToast(`Video added to watch later`, "success");
       }
       console.log("addVideoToWatchLater", res);
       setUpdatingPlaylist(false);
     } catch (err) {
+      customToast(`Failed to add video to watch later`, "error");
       console.log("err in addVideoToWatchLater", err);
     }
   };
@@ -162,10 +178,12 @@ function usePlaylistApiCalls() {
           type: UPDATE_WATCH_LATER,
           payload: { data: res.data },
         });
+        customToast(`Video removed from watch later`, "success");
       }
       console.log("removed from watch later videos", res);
       setUpdatingPlaylist(false);
     } catch (err) {
+      customToast(`Failed to remove video from watch later`, "error");
       console.log("err in remove from watch later videos", err);
     }
   };
@@ -224,10 +242,12 @@ function usePlaylistApiCalls() {
           type: UPDATE_HISTORY,
           payload: { data: res.data },
         });
+        customToast(`History cleared`, "success");
       }
       console.log("removeVideoToHistory", res);
       setUpdatingPlaylist(false);
     } catch (err) {
+      customToast(`Failed to clear history`, "error");
       console.log("err in removeVideoToHistory", err);
     }
   };
@@ -244,7 +264,7 @@ function usePlaylistApiCalls() {
     removeVideoFromWatchLater,
     addVideoToHistory,
     removeVideoFromHistory,
-    clearWatchHistory
+    clearWatchHistory,
   };
 }
 

@@ -18,9 +18,13 @@ import { PlaylistProvider } from "./Contexts/PlaylistContext";
 import MockmanEs from "mockman-js";
 import Playlist from "./screens/Playlist";
 import WatchLater from "./screens/WatchLater";
+import {ToastContainer} from 'react-toastify'
+import "react-toastify/dist/ReactToastify.css";
+
 function App() {
   return (
     <div className="App">
+      <ToastContainer theme="colored" autoClose={1200} />
       <Router>
         <ModalProvider>
           <AuthProvider>

@@ -5,6 +5,7 @@ import ModalWrapper from "../../components/ModalWrapper";
 import axios from "axios";
 import utils from "../../utils";
 import { useNavigate } from "react-router-dom";
+import {useToast} from '../../Hooks/useToast'
 export const AuthContext = createContext({
   showModal: false,
   setShowModal: () => {},
@@ -13,6 +14,7 @@ export const AuthContext = createContext({
 });
 
 export const AuthProvider = (props) => {
+  const {customToast} = useToast()
   const [authType, setAuthType] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState({ errorExists: false, errorMessage: "" });
@@ -38,6 +40,7 @@ export const AuthProvider = (props) => {
           isAuthenticated: true,
           encodedToken: res.data.encodedToken,
         });
+        customToast(`Logged in successfully.`,"success");
         setAuthType(false);
         return true;
       }
@@ -46,6 +49,7 @@ export const AuthProvider = (props) => {
         errorExists: true,
         errorMessage: "Invalid Credentials. Please try again",
       });
+      customToast(`Failed to login. Please check credentials`,"error");
       setIsLoading(false);
     }
   };
@@ -56,6 +60,7 @@ export const AuthProvider = (props) => {
       isAuthenticated: false,
       encodedToken: "",
     });
+    customToast(`Logged out successfully.`,"success");
     navigate('/')
   };
 
@@ -76,6 +81,7 @@ export const AuthProvider = (props) => {
         setError({ errorExists: false, errorMessage: "" });
         setAuthType(false);
         setIsLoading(false);
+        customToast(`Signed up successfully.`,"success");
         return true;
       }
     } catch (e) {
@@ -83,6 +89,8 @@ export const AuthProvider = (props) => {
         errorExists: true,
         errorMessage: "Something went wront. Please try again",
       });
+      customToast(`Signup failed.`,"error");
+
       setIsLoading(false);
     }
   };
