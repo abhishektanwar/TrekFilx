@@ -26,10 +26,10 @@ const Playlists = () => {
   };
   return (
     <div>
-      <div className="flex-row flex-align-item-center flex-justify-content-space-between">
+      <div className="flex-row flex-align-item-center flex-justify-content-space-between page-heading">
         <h3>Your Playlists</h3>
         <Button
-          buttonStyle="secondary-button"
+          buttonStyle="secondary-button page-heading-action-button"
           icon={<Add />}
           buttonText="Create new playlist"
           onClick={() => createPlaylistHandler()}
@@ -38,7 +38,7 @@ const Playlists = () => {
       <div>
         {playlists.length === 0 ? (
           <div className="flex-row flex-justify-content-center margin-top-20">
-            <h3>You do not have any playlist yet.</h3>
+            <h3 style={{textAlign:'center'}}>You do not have any playlist yet.</h3>
           </div>
         ) : (
           <div className="playlist-grid-container">

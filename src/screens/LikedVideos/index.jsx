@@ -14,19 +14,13 @@ const LikedVideos = () => {
   const { user } = useAuth();
   return (
     <div>
-      <div className="flex-row flex-align-item-center flex-justify-content-space-between">
+      <div className="flex-row flex-align-item-center flex-justify-content-space-between page-heading">
         <h3>Videos liked by you</h3>
-        {/* <Button
-          buttonStyle="secondary-button"
-          icon={<Add />}
-          buttonText="Create new playlist"
-          onClick={() => createPlaylistHandler()}
-        /> */}
       </div>
       <div>
         {likedPlaylist.length === 0 ? (
-          <div className="flex-row flex-justify-content-center margin-top-20">
-            <h3>You do not have any liked videos.</h3>
+          <div className="flex-row flex-justify-content-center margin-top-20 ">
+            <h3 style={{textAlign:'center'}}>You do not have any liked videos.</h3>
           </div>
         ) : (
           <div className="flex-column flex-align-item-center">

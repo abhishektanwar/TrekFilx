@@ -1,6 +1,8 @@
 .chip-container {
   padding: 2rem 0rem 0rem 1rem;
   margin: 2rem 0 2rem 3rem;
+	display: flex;
+	flex-wrap: wrap;
 }
 
 .chip {
@@ -9,6 +11,7 @@
 	background-color: var(--grey-background-color);
 	padding: 8px 16px;
 	margin-right: 1rem;
+	margin-top: 1rem;
 }
 
 .chip:hover,
@@ -21,6 +24,9 @@
 @media (max-width: 1024px) {
 	.chip-container {
 		margin: 0 0 3rem 0;
-		padding: 0
+		padding: 0;
+		justify-content: center;
+
 	}
+
 }

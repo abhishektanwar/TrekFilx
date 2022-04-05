@@ -2,6 +2,7 @@
   width:10vw;
   background-color: var(--grey-background-color);
   height: calc(100vh - 80px);
+  min-width: max-content;
 }
 
 .aside-nav-item{
@@ -24,4 +25,36 @@ li{
 
 .active-nav{
   background-color:var(--bg-color-secondary) ;
+}
+.menu-icon{
+  display: none;
+}
+
+.close-button{
+  margin-left: auto;
+  /* margin-left: 20px; */
+  justify-content: flex-end;
+  display: flex;
+  /* padding-top: 10px; */
+  padding: 10px;
+}
+@media screen and (max-width:480px){
+
+  .menu-icon{
+    display: block;
+    margin-left: 1.6rem;
+  }
+
+  .hide-aside-nav{
+    display: none;
+  }
+  
+  .show-aside-nav{
+    display: inline-block;
+    position: absolute;
+    z-index: 100;
+    background-color: #e0e0e0;
+    height: 100vh;
+    top: 0;
+  }
 }

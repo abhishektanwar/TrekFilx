@@ -13,10 +13,10 @@ const History = () => {
   const { user } = useAuth();
   return (
     <div>
-      <div className="flex-row flex-align-item-center flex-justify-content-space-between">
+      <div className="flex-row flex-align-item-center flex-justify-content-space-between page-heading">
         <h3>Watch History</h3>
         <Button
-          buttonStyle="secondary-button"
+          buttonStyle="secondary-button page-heading-action-button"
           icon={<DeleteIcon />}
           buttonText="Clear All History"
           onClick={()=>clearWatchHistory(user.encodedToken)}
@@ -25,7 +25,7 @@ const History = () => {
       <div>
         {historyPlaylist.length === 0 ? (
           <div className="flex-row flex-justify-content-center margin-top-20">
-            <h3>You do not have any watch history.</h3>
+            <h3 style={{textAlign:'center'}}>You do not have any watch history.</h3>
           </div>
         ) : (
           <div className="flex-column flex-align-item-center">

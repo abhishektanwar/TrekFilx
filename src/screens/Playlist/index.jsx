@@ -28,7 +28,7 @@ const Playlist = () => {
       <h2>{playlist.title}</h2>
       <div className="flex-column flex-align-item-center">
         {playlist.videos.length === 0 ? (
-          <h3>This playlist is empty</h3>
+          <h3 style={{textAlign:'center'}}>This playlist is empty</h3>
         ) : (
           playlist.videos.map((video) => {
             return (

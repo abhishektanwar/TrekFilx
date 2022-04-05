@@ -6,6 +6,7 @@ import { ReactComponent as History } from "../../assets/history.svg";
 import { ReactComponent as WatchLater } from "../../assets/watch-later.svg";
 import { ReactComponent as PlaylistAddCheck } from "../../assets/playlist-add-check.svg";
 import { ReactComponent as Like } from "../../assets/like.svg";
+import { ReactComponent as Close } from "../../assets/close.svg";
 import "./aside-nav.css";
 import { useAuth } from "../../Contexts/AuthDialogContext";
 import { useNavigate } from "react-router-dom";
@@ -13,7 +14,7 @@ import Button from "../Buttons/Button";
 import { useModal } from "../../Contexts/ModalContext";
 import {useLocation} from 'react-router-dom';
 
-const AsideNav = () => {
+const AsideNav = ({open,setOpen}) => {
   const { setAuthType, logoutHandler, user } = useAuth();
   const navigate = useNavigate();
   const { showModal } = useModal();
@@ -26,7 +27,15 @@ const AsideNav = () => {
   };
 
   return (
-    <div className="aside-nav-container">
+    <div className={`${open ? 'show-aside-nav' : 'hide-aside-nav'} aside-nav-container `}>
+      {open ? (
+      <div>
+        <span onClick={()=>setOpen(false)} className="close-button">
+          <Close />
+        </span>
+      </div>
+        
+      ):null}
         <Button
           buttonText="Explore"
           buttonStyle={`aside-nav-item body-typo-md text-medium-weight secondary-button ${currentLocation==='/explore' ? 'active-nav' : ''}`}

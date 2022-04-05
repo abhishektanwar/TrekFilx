@@ -23,9 +23,25 @@ body{
   margin-top:0 ;
 }
 
+.page-heading{
+  margin:1rem;
+  border-bottom: 1px solid var(--border-color);
+}
+
+
 @media screen and (max-width:480px){
   .app-container{
     margin :0;
+    width: 100vw;
   }
+
+  .main-container{
+    grid-template-columns: 100vw;
+  }
+
+  .page-heading-action-button{
+    margin: 0;
+  }
+  
 }
 

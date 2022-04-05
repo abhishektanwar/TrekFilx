@@ -20,8 +20,11 @@ import Playlist from "./screens/Playlist";
 import WatchLater from "./screens/WatchLater";
 import {ToastContainer} from 'react-toastify'
 import "react-toastify/dist/ReactToastify.css";
+import Page404 from "./screens/Page404";
+import { useState } from "react";
 
 function App() {
+  const [open,setOpen] = useState(false);
   return (
     <div className="App">
       <ToastContainer theme="colored" autoClose={1200} />
@@ -31,10 +34,10 @@ function App() {
             <VideoListingProvider>
               <PlaylistProvider>
                 <nav className="nav-bar shadow-box" id="my-nav-bar">
-                  <Header />
+                  <Header open={open} setOpen={setOpen} />
                 </nav>
                 <div className="main-container">
-                  <AsideNav />
+                  <AsideNav open={open} setOpen={setOpen} />
                   <Routes>
                     <Route path="/" element={<Home />} />
                     <Route path="/explore" element={<ExploreVideos />} />
@@ -48,6 +51,8 @@ function App() {
                     <Route path="/video/:videoId" element={<VideoPage />} />
                     <Route path="/watch-later" element={<WatchLater />} />
                     <Route path="/mock-api" element={<MockmanEs />} />
+                    <Route path="*" element={<Page404 />} />
+
                   </Routes>
                 </div>
               </PlaylistProvider>

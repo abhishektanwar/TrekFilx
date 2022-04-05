@@ -5,8 +5,8 @@ import { useModal } from "../../Contexts/ModalContext";
 import Button from "../Buttons/Button";
 import Logo from "./Logo";
 import SearchBar from "./SearchBar";
-
-const Header = () => {
+import {ReactComponent as MenuIcon} from '../../assets/menu.svg'
+const Header = ({open,setOpen}) => {
   const { setAuthType, logoutHandler, user,authType } = useAuth();
   const { showModal } = useModal();
   const handleLoginBtnClick = () => {
@@ -16,10 +16,13 @@ const Header = () => {
 
   return (
     <>
+      <span className="menu-icon" onClick={()=>setOpen((prev) => !prev)} >
+        <MenuIcon />
+        </span>
       <Link to="/">
         <Logo />
       </Link>
-      <SearchBar />
+      {/* <SearchBar /> */}
       {authType}
       <div className="nav-section">
         <Button
