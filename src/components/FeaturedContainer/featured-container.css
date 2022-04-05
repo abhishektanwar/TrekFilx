@@ -1,0 +1,23 @@
+.featured-container {
+  display: grid;
+  grid-template-columns: repeat(4, 320px);
+  grid-column-gap: 10px;
+  grid-row-gap: 60px;
+  justify-content: center;
+  justify-items: center;
+}
+
+.featured-container-header {
+  text-align: center;
+}
+
+@media screen and (max-width: 480px) {
+  .featured-container {
+    grid-template-columns: repeat(2, 180px);
+    justify-items: unset;
+  }
+  
+  .category-card{
+    margin-top: 3rem;
+  }
+}

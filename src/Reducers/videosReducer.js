@@ -1,7 +1,7 @@
 import { dispatchActioTypes } from "./dispatchActionTypes"
 
 export const videosReducer = (state,action) =>{
-  const {LOADING_DATA,LOAD_DATA,SET_ERROR} = dispatchActioTypes;
+  const {LOADING_DATA,LOAD_DATA,SET_ERROR,CATEGORY_FILTER,ALL_CATEGORY} = dispatchActioTypes;
   switch(action.type){
     case LOADING_DATA:
       return {
@@ -20,10 +20,28 @@ export const videosReducer = (state,action) =>{
         return {
           ...state,
           categoriesData:[...action.payload.categories],
-          categories:action.payload.categoriesFilterData
+          categories:action.payload.categoriesFilterData,
+          isDataLoading:action.payload.status
         }
       }
     }
+
+    case CATEGORY_FILTER:{
+      return {
+        ...state,
+        categories:{
+          ...state["categories"],[action.payload.category.key]:action.payload.category.value
+        }
+      }
+    }
+
+    case ALL_CATEGORY:
+      return {
+        ...state,
+        categories:action.payload.filter,
+        allCategorySelected:action.payload.allCategorySelected
+
+      }
     
     default:
       return state;

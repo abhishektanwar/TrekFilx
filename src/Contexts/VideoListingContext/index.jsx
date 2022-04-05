@@ -12,6 +12,7 @@ const VideoListingProvider = (props) => {
     categories: {}, //selected by user else All
     isDataLoading:false,
     error:"",
+    allCategorySelected:false
   });
 
   const {LOADING_DATA,LOAD_DATA,SET_ERROR} = dispatchActioTypes;
@@ -52,7 +53,8 @@ const VideoListingProvider = (props) => {
         if(response.status === 200){
           const categories = response.data.categories;
           const categoriesFilterData = categories.reduce(
-            (acc, item) => ({ ...acc, [item.category]: false }),
+            (acc, item) => ({ ...acc,[item.category]:{"isSelected": false,"title":item.title} }),
+            // (acc,item) => acc.push({[item.category]: false,"title":[item.title]}),
             {}
           );
           videoListingDispatch({

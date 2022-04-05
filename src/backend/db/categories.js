@@ -22,14 +22,14 @@ export const categories = [
   },
   {
     _id: uuid(),
-    categoryName: "Rock Climbing",
+    title: "Rock Climbing",
     description:
       "Backend Development is also known as server-side development. It is everything that the users don't see and contains behind-the-scenes activities that occur when performing any action on a website.",
     category:'rockclimbing'
   },
   {
     _id: uuid(),
-    categoryName: "Snorkelling",
+    title: "Snorkelling",
     description:
       "Backend Development is also known as server-side development. It is everything that the users don't see and contains behind-the-scenes activities that occur when performing any action on a website.",
     category:'snorkeling'
