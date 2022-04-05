@@ -54,12 +54,13 @@
 
 .dropdown {
   position: absolute;
-  bottom: 28px;
   width: 240px;
   overflow: hidden;
   background-color: white;
   padding: 8px 0;
   z-index: 10;
+  bottom: -6rem;
+  right: 6px;
 }
 
 .menu-item {
