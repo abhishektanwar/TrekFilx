@@ -29,7 +29,7 @@ const InputField = ({
       </label>
       <input
         class={`form-field ${!validation ? "invalid-field-border" : ""}`}
-        type={showTogglePasswordButton && showPassword ? 'text' : type}
+        type={showTogglePasswordButton && showPassword ? "text" : type}
         name={name}
         id={id}
         placeholder={placeholder}
@@ -43,7 +43,11 @@ const InputField = ({
           className="toggle-password-button"
           onClick={() => setShowPassword((prev) => !prev)}
         >
-          <i class="far fa-eye-slash" style={{ fontSize: "1.6rem" }}></i>
+          {showPassword ? (
+            <i class="far fa-eye" style={{ fontSize: "1.6rem" }}></i>
+          ) : (
+            <i class="far fa-eye-slash" style={{ fontSize: "1.6rem" }}></i>
+          )}
         </span>
       ) : null}
     </div>

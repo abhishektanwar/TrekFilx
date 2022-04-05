@@ -74,6 +74,7 @@ const SignUp = () => {
             onChange={handleSignUpCredentialInput}
             required={true}
             validation={signUpCredentials.password.length === 0 ? true : isValidPassword}
+            showTogglePasswordButton = {true}
           />
           <InputField
             type="password"
@@ -85,6 +86,7 @@ const SignUp = () => {
             onChange={handleSignUpCredentialInput}
             required={true}
             validation={signUpCredentials.confirmPassword.length === 0 ? true : isValidPassword}
+            showTogglePasswordButton = {true}
           />
           <div class="card-action-btn-container flex-column">
             <Button buttonText="Sign Up" buttonStyle={`flex-justify-content-center ${!(isValidPassword && isValidEmail) ? `btn-disabled ` : `` }`} onClick={() => signUpUser()} />
