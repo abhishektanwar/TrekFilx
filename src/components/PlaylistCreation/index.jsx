@@ -73,7 +73,6 @@ const PlaylistCreation = () => {
           );
         })}
       </ul>
-      {updatingPlaylist ? <h3>Updating playlists</h3> : null}
       <div className="playlist-creation-section margin-top-20">
         {creatingNewPlaylist ? (
           <InputField
@@ -125,5 +124,3 @@ const PlaylistCreation = () => {
 };
 
 export default PlaylistCreation;
-
-// { "playlist": { "title": "playasclistName","videos":[{"asdas":"asdasd"}]} }
