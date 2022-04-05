@@ -18,13 +18,14 @@ import { PlaylistProvider } from "./Contexts/PlaylistContext";
 import MockmanEs from "mockman-js";
 import Playlist from "./screens/Playlist";
 import WatchLater from "./screens/WatchLater";
-import {ToastContainer} from 'react-toastify'
+import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import Page404 from "./screens/Page404";
 import { useState } from "react";
+import PrivateRoute from './components/PrivateRoute'
 
 function App() {
-  const [open,setOpen] = useState(false);
+  const [open, setOpen] = useState(false);
   return (
     <div className="App">
       <ToastContainer theme="colored" autoClose={1200} />
@@ -41,18 +42,19 @@ function App() {
                   <Routes>
                     <Route path="/" element={<Home />} />
                     <Route path="/explore" element={<ExploreVideos />} />
-                    <Route path="/liked-videos" element={<LikedVideos />} />
-                    <Route path="/history" element={<History />} />
-                    <Route path="/playlists" element={<Playlists />} />
-                    <Route
-                      path="/playlist/:playlistId"
-                      element={<Playlist />}
-                    />
-                    <Route path="/video/:videoId" element={<VideoPage />} />
-                    <Route path="/watch-later" element={<WatchLater />} />
+                    <Route element = { <PrivateRoute /> }>
+                      <Route path="/liked-videos" element={<LikedVideos />} />
+                      <Route path="/history" element={<History />} />
+                      <Route path="/playlists" element={<Playlists />} />
+                      <Route
+                        path="/playlist/:playlistId"
+                        element={<Playlist />}
+                      />
+                      <Route path="/video/:videoId" element={<VideoPage />} />
+                      <Route path="/watch-later" element={<WatchLater />} />
+                    </Route>
                     <Route path="/mock-api" element={<MockmanEs />} />
                     <Route path="*" element={<Page404 />} />
-
                   </Routes>
                 </div>
               </PlaylistProvider>
