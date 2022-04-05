@@ -40,7 +40,6 @@ const CategoryCard = (props) => {
         loading="lazy"
         class="responsive-img"
       />
-      {console.log("ss",category.key)}
       <p className="typo-sm category-title">{category.value.title}</p>
     </div>
   );

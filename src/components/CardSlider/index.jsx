@@ -8,9 +8,7 @@ const CardSlider = (props) => {
   const {heading,videos} = props;
   // const featuredVideos = videos.filter(video=>video.featured)
   const ref=useRef(null);
-  console.log("ref",ref);
   const slideLeft = () =>{
-    console.log("slide",ref);
     ref.current.scrollLeft -= 200;
   }
   const slideRight = () =>{

@@ -47,7 +47,6 @@ const PlaylistProvider = ({ children }) => {
           }
         }
         catch(err){
-          console.log("initial hitory data fetch error",err)
         }
         userVideoDispatch({
           type: LOADING_DATA,
@@ -72,7 +71,6 @@ const PlaylistProvider = ({ children }) => {
           }
         }
         catch(err){
-          console.log("initial likes data fetch error",err)
         }
         userVideoDispatch({
           type: LOADING_DATA,
@@ -97,7 +95,6 @@ const PlaylistProvider = ({ children }) => {
           }
         }
         catch(err){
-          console.log("initial likes data fetch error",err)
         }
         userVideoDispatch({
           type: LOADING_DATA,
@@ -122,7 +119,6 @@ const PlaylistProvider = ({ children }) => {
           }
         }
         catch(err){
-          console.log("initial likes data fetch error",err)
         }
         userVideoDispatch({
           type: LOADING_DATA,

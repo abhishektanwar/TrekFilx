@@ -24,7 +24,6 @@ const SignUp = () => {
 
   
   const handleSignUpCredentialInput = (e) => {
-    console.log([e.target.name], e.target.value);
     setSignUpCredentials((creds) => ({
       ...creds,
       [e.target.name]: e.target.value,

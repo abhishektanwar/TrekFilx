@@ -21,7 +21,6 @@ const VideoListingProvider = (props) => {
     (async () => {
       try{
         const response = await axios.get('/api/videos')
-        console.log(response)
         videoListingDispatch({
           type:LOADING_DATA,
           payload:{status:true}
@@ -35,7 +34,6 @@ const VideoListingProvider = (props) => {
         }
       }
       catch (err){
-        console.log("Err in video api fetch",err)
         videoListingDispatch({
           type:SET_ERROR,
           payload:{error:err}
@@ -45,7 +43,6 @@ const VideoListingProvider = (props) => {
     (async () => {
       try{
         const response = await axios.get('/api/categories')
-        console.log(response)
         videoListingDispatch({
           type:LOADING_DATA,
           payload:{status:true}
@@ -64,7 +61,6 @@ const VideoListingProvider = (props) => {
         }
       }
       catch (err){
-        console.log("Err in category api fetch",err)
         videoListingDispatch({
           type:SET_ERROR,
           payload:{error:err}

@@ -23,7 +23,6 @@ const Header = ({open,setOpen}) => {
         <Logo />
       </Link>
       {/* <SearchBar /> */}
-      {authType}
       <div className="nav-section">
         <Button
           buttonText={user.isAuthenticated ? "Logout" : "Login"}

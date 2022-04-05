@@ -20,7 +20,6 @@ const AsideNav = ({open,setOpen}) => {
   const { showModal } = useModal();
   const location = useLocation();
   const currentLocation = location.pathname;
-  console.log("loca",location)
   const handleLogin = () => {
     showModal();
     setAuthType("login");
