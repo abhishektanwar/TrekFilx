@@ -16,7 +16,10 @@
 
 ---
 
-## Video Demo : [Trek Flix](https://trekshark.netlify.app/)
+## Video Demo : 
+
+https://user-images.githubusercontent.com/40486188/161938879-f72d31ce-bc9b-4df8-bb77-9d9f96582e9d.mp4
+
 
 ---
 
@@ -33,11 +36,16 @@ Below listed are the links for different pages in Trek Shark.
 
 ## Features
 
+- Mobile and desktop responsive screens
+
 >### P0
 
 - Search videos by clicking on video category card on home page.
 
+- Select category from video explore page
+
 - Add / Remove video to liked videos from both video card or video detail (play) page.
+
 - Add video to playlist from both video card or video detail (play) page.
 
 - Remove video from playlist.
